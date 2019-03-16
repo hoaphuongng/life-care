@@ -1,0 +1,28 @@
+{
+	"name": "life-care",
+	"version": "1.0.0",
+	"description": "This is an example application for my thesis topic",
+	"main": "index.js",
+	"scripts": {
+		"start": "http-server -c-1",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hoaphuongng/life-care.git"
+	},
+	"keywords": [
+		"PWA",
+		"application",
+		"web"
+	],
+	"author": "Phuong Hoa Nguyen",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/hoaphuongng/life-care/issues"
+	},
+	"homepage": "https://github.com/hoaphuongng/life-care#readme",
+	"dependencies": {
+		"http-server": "^0.11.1"
+	}
+}
