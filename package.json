@@ -4,7 +4,7 @@
 	"description": "This is an example application for my thesis topic",
 	"main": "index.js",
 	"scripts": {
-		"start": "http-server -c-1",
+		"start": "http-server -c-1 -p 8100",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {

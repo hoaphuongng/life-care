@@ -1,0 +1,16 @@
+body {
+	color: #000501;
+	font-family: 'Open Sans', sans-serif;
+}
+header {
+	background-color: #73ab84 !important;
+}
+
+.mdl-tabs__tab {
+	flex: 1;
+	padding: 0;
+}
+
+.mdl-tabs__tab.is-active:after {
+	background: #99d19c !important;
+}

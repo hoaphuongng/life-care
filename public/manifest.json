@@ -1,0 +1,49 @@
+{
+	"name": "Life Care",
+	"short_name": "Life Care",
+	"start_url": "/index.html",		// Page to load on start up
+	"scope": ".",					// Pages included
+	"display": "standalone",
+	"background_color": "#fff",
+	"theme_color": "#73ab84",
+	"description": "This is an application supporting insurance salesmen to sell insurance plan in a faster way than traditional sales.",
+	"dir": "ltr",					// Reading direction (L -> R)
+	"lang": "en-us",
+	"orientation": "portrait-primary",
+	"icons": [ 
+		{
+			"src": "/src/images/icons/logo-icon-32x32.png",
+			"type": "image/png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "/src/images/icons/logo-icon-64x64.png",
+			"type": "image/png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "/src/images/icons/logo-icon-128x128.png",
+			"type": "image/png",
+			"sizes": "128x128"
+		},
+		{
+			"src": "/src/images/icons/logo-icon-256x256.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "/src/images/icons/app-icon-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"related_applications": [
+		{
+			"platform": "play",
+			"url": "https://play.google.com/store/apps/...",
+			"id": "com.life-care"
+		}
+	],
+	"display": "fullscreen",
+	"orientation": "portrait-primary"
+}
