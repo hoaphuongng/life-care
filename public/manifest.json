@@ -5,12 +5,17 @@
 	"scope": ".",					// Pages included
 	"display": "standalone",
 	"background_color": "#fff",
-	"theme_color": "#73ab84",
-	"description": "This is an application supporting insurance salesmen to sell insurance plan in a faster way than traditional sales.",
+	"theme_color": "#009688",
+	"description": "This is an application supporting claim insurance using PWA technology",
 	"dir": "ltr",					// Reading direction (L -> R)
 	"lang": "en-us",
 	"orientation": "portrait-primary",
 	"icons": [ 
+		{
+			"src": "/src/images/icons/logo-icon-16x16.png",
+			"type": "image/png",
+			"sizes": "16x16"
+		},
 		{
 			"src": "/src/images/icons/logo-icon-32x32.png",
 			"type": "image/png",

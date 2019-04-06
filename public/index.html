@@ -6,14 +6,25 @@
 	<meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" type="image/png" href="/src/images/icons/logo-icon-16x16.png" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-red.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="/src/css/app.css">
+	<link rel="stylesheet" href="/src/css/claim.css">
 	<link rel="manifest" href="/manifest.json">
-	<meta name="theme-color" content="#73ab84">
+	<meta name="theme-color" content="#009688">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Life Care">
+	<link rel="apple-touch-icon" href="/src/images/icons/logo-icon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="/src/images/icons/logo-icon-64x64.png" sizes="64x64">
+	<link rel="apple-touch-icon" href="/src/images/icons/logo-icon-128x128.png" sizes="128x128">
+	<link rel="apple-touch-icon" href="/src/images/icons/logo-icon-256x256.png" sizes="256x256">
+	<meta name="msapplication-TileImage" content="/src/images/icons/app-icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#fff">
 </head>
 <body>
 	<div id="container">
@@ -21,39 +32,109 @@
 			<header class="mdl-layout__header">
 				<div class="mdl-layout__header-row">
 					<span class="mdl-layout__title">Life Care</span>
+					
+					<div class="mdl-layout-spacer"></div>
+					<nav class="mdl-navigation mdl-layout--large-screen-only">
+						<a class="mdl-navigation__link is-active" href="/">Home</a>
+						<a class="mdl-navigation__link" href="/claim-history">Claim History</a>
+						<div class="drawer-option">
+							<button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+								Turn on Notification
+							</button>
+						</div>
+					</nav>
 				</div>
 			</header>
-			<main class = "mdl-layout__content">    
-				<div class = "mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-					<div class = "mdl-tabs__tab-bar ">
-						<a href = "#home-panel" class = "mdl-tabs__tab is-active">
-							<div>HOME</div>
-						</a>
-						<a href = "#sell-panel" class = "mdl-tabs__tab">SELL</a>
-						<a href = "#history-panel" class = "mdl-tabs__tab">HISTORY</a>
-						<a href = "#more-panel" class = "mdl-tabs__tab">MORE</a>
+			<div class="mdl-layout__drawer">
+				<span class="mdl-layout-title">Life Care</span>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link is-active" href="/">Home</a>
+					<a class="mdl-navigation__link" href="/claim-history">Claim History</a>
+					<div class="drawer-option">
+						<button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
+							Turn on Notification
+						</button>
 					</div>
+				</nav>
+			</div>
+			<main class="mdl-layout__content">  
+				<div class="page-content">
+					<div class="text-center">
+						<img src="/src/images/students.jpg" title="https://www.novia.fi/about-us/news/order-a-student-card" alt="Copyright to Novia images">
+					</div>
+					<h5 class="text-center mdl-color-text--primary padding">Plan and Grow</h5>
+					<p class="text-center padding">We take care of your life. Our missions are ensuring peaceful, prosperity and long-term benefits for customers, investors and communities.</p>
 
-					<div class = "mdl-tabs__panel is-active" id = "home-panel">
-						<p>Tab 1 Content</p>
+					<ul class="demo-list-item mdl-list">
+						<li class="mdl-list__item">
+							<i class="material-icons">event</i>
+							<span class="mdl-list__item-primary-content">
+								Life events
+							</span> 
+							<span></span>
+						</li>
+						<li class="mdl-list__item">
+							<i class="material-icons">account_balance</i>
+							<span class="mdl-list__item-primary-content">
+								Finances 
+							</span>
+						</li>
+						<li class="mdl-list__item">
+							<i class="material-icons">layers</i>
+							<span class="mdl-list__item-primary-content">
+								Healthy living 
+							</span>
+						</li>
+						<li class="mdl-list__item">
+							<i class="material-icons">directions_bike</i>
+							<span class="mdl-list__item-primary-content">
+								Dynamic 
+							</span>
+						</li>
+					</ul>
+				</div>  
+				<div id="create-claim">
+					<form id="claim-form">
+						<h5>PERSONAL DATA</h5>
+						<div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+							<input class="mdl-textfield__input" type="text" 
+							placeholder="e.g. John Doe" id="claimer_name">
+							<label class="mdl-textfield__label" for="claimer_name" 
+							name="claimer_name">Full Name</label>
+						</div>
+						<div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" id="manual-location">
+							<input class="mdl-textfield__input" type="text" 
+							placeholder="e.g. Vaasa, Finland" id="claimer_location">
+							<label class="mdl-textfield__label" for="claimer_location" 
+							name="claimer_location">Location</label>
+						</div>
+						<h5>INFORMATION ON LOSS</h5>
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+							<textarea class="mdl-textfield__input" type="text" placeholder="e.g. Occur time, date, loss?"
+							rows="2" id="claimer_loss"></textarea>
+							<label class="mdl-textfield__label" for="claimer_loss">Details on loss</label>
+						</div>
+						<div>
+							<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent mdl-js-ripple-effect"
+							type="submit" id="send-claim-btn">
+							Send Claim
+						</button>
+						<button class="mdl-button mdl-js-button mdl-button--primary  mdl-js-ripple-effect" id="close-claim-form-btn" type="button">
+							Cancel
+						</button>
 					</div>
-
-					<div class = "mdl-tabs__panel" id = "sell-panel">
-						<p>Tab 2 Content</p>
-					</div>
-
-					<div class = "mdl-tabs__panel" id = "history-panel">
-						<p>Tab 3 Content</p>
-					</div>
-
-					<div class = "mdl-tabs__panel" id = "more-panel">
-						<p>Tab 3 Content</p>
-					</div>
-				</div>
-			</main>
-		</div>
+				</form>
+			</div>
+			<div class="floating-button">
+				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+				id="open-claim-form-btn">
+				<i class="material-icons">add</i>
+			</button>
+		</main>
 	</div>
-	<script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-	<script src="/src/js/app.js"></script>
+</div>
+<script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+<script src="/src/js/app.js"></script>
+<script src="/src/js/claim.js"></script>
 </body>
 </html>

@@ -3,14 +3,45 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 header {
-	background-color: #73ab84 !important;
+	background-color: #009688 !important;
 }
 
-.mdl-tabs__tab {
-	flex: 1;
-	padding: 0;
+.is-active {
+	font-weight: bold;
+	opacity: 1;
 }
 
-.mdl-tabs__tab.is-active:after {
-	background: #99d19c !important;
+.text-center {
+	text-align: center;
 }
+
+.padding {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.drawer-option {
+	padding: 15px;
+}
+
+
+.floating-button {
+	z-index: 1000;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding: 30px;
+}
+
+img {
+	width: 100%;
+}
+
+@media(min-width: 1000px) {
+	img {
+		width: 550px;
+	}
+}
+/*.enable-notifications {
+	display: none;
+}*/
