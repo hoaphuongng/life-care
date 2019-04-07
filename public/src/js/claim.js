@@ -8,6 +8,14 @@ var claimForm = document.querySelector('#claim-form');
 // Click floating button "+" to open claim form 
 function openClaimForm() {
 	claimFormArea.style.transform = 'translateY(0)';
+
+	if (deferredPrompt) {
+		deferredPrompt.prompt();
+		deferredPrompt.userChoice.then(function(choice){
+			console.log(choice.outcome);
+		});
+		deferredPrompt = null;
+	}
 }
 
 openClaimFormBtn.addEventListener('click', openClaimForm);

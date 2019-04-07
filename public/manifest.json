@@ -1,14 +1,15 @@
-{
+﻿{
 	"name": "Life Care",
 	"short_name": "Life Care",
-	"start_url": "/index.html",		// Page to load on start up
-	"scope": ".",					// Pages included
-	"display": "standalone",
+	"start_url": "/index.html",
+	"scope": ".",
 	"background_color": "#fff",
 	"theme_color": "#009688",
 	"description": "This is an application supporting claim insurance using PWA technology",
-	"dir": "ltr",					// Reading direction (L -> R)
+	"dir": "ltr",
 	"lang": "en-us",
+	"prefer_related_applications": false,
+	"display": "fullscreen",
 	"orientation": "portrait-primary",
 	"icons": [ 
 		{
@@ -37,18 +38,9 @@
 			"sizes": "256x256"
 		},
 		{
-			"src": "/src/images/icons/app-icon-512x512.png",
+			"src": "/src/images/icons/logo-icon-512x512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}
-	],
-	"related_applications": [
-		{
-			"platform": "play",
-			"url": "https://play.google.com/store/apps/...",
-			"id": "com.life-care"
-		}
-	],
-	"display": "fullscreen",
-	"orientation": "portrait-primary"
+	]
 }
