@@ -20,3 +20,15 @@
 .mdl-list__item-primary-content {
 	padding-left: 15px;
 }
+
+.input-section #location-btn {
+    position: absolute;
+    right: 0;
+    top: 10px;	
+}
+.input-section #location-spinner {
+	display: none;
+	position: absolute;
+    right: 0;
+    top: 10px;
+}
