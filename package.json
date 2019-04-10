@@ -5,7 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "http-server -c-1 -p 8100",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"wizard": "workbox wizard",
+		"generate-sw": "workbox injectManifest"
 	},
 	"repository": {
 		"type": "git",
@@ -24,5 +26,8 @@
 	"homepage": "https://github.com/hoaphuongng/life-care#readme",
 	"dependencies": {
 		"http-server": "^0.11.1"
+	},
+	"devDependencies": {
+		"workbox-cli": "^3.6.3"
 	}
 }
