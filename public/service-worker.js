@@ -1,14 +1,16 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/src/js/idb.js");
+importScripts("/src/js/utility.js");
 
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute([
   {
-    "url": "claim-history/index.html",
-    "revision": "f29c02619cc956c8bbff5909f53babfd"
+    "url": "404.html",
+    "revision": "f50e79252e2654232e581b64a29151e3"
   },
   {
     "url": "index.html",
-    "revision": "6262ef2a2f9aa92fbba67918899efd7b"
+    "revision": "4ee715da5aa76fe594c62146d66226b8"
   },
   {
     "url": "manifest.json",
@@ -16,50 +18,176 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "src/css/app.css",
-    "revision": "63e44c932707ba752c764d15e9468375"
+    "revision": "1b4b890fa0faafe0184d7dd03f7faaca"
+  },
+  {
+    "url": "src/css/claim-history.css",
+    "revision": "bb7936d59c2699f260df5c588b3a2759"
   },
   {
     "url": "src/css/claim.css",
-    "revision": "938a3c2a2c94e15ff7524b54f89b9f5c"
+    "revision": "b5c1f9745991df1e782309f716666871"
   },
   {
     "url": "src/js/app.js",
-    "revision": "d02ccc1846db6ef2922041225fd1253b"
+    "revision": "036ca899f18570a0ca5947e131578bac"
+  },
+  {
+    "url": "src/js/claim-history.js",
+    "revision": "cae3c518c3781a8139c1ca805181c89a"
   },
   {
     "url": "src/js/claim.js",
-    "revision": "c220de938b7a2e8b9657d6cd38c5c79e"
+    "revision": "f872c039c5fa5f3409970f77ba6b8ccb"
+  },
+  {
+    "url": "src/js/fetch.js",
+    "revision": "6b82fbb55ae19be4935964ae8c338e92"
+  },
+  {
+    "url": "src/js/idb.js",
+    "revision": "017ced36d82bea1e08b08393361e354d"
   },
   {
     "url": "src/js/material.js",
     "revision": "60f3ee61721d5bbac709fad9c239f2ac"
   },
   {
+    "url": "src/js/promise.js",
+    "revision": "10c2238dcd105eb23f703ee53067417f"
+  },
+  {
+    "url": "src/js/utility.js",
+    "revision": "8f7180606c60833f2c9e18955e4ea71a"
+  },
+  {
     "url": "sw-base.js",
-    "revision": "eafa8c06de3e7a3c274564ee846477a8"
+    "revision": "d3d73c3bdb0b5f8ff9576b096e293b0d"
   },
   {
     "url": "sw.js",
-    "revision": "d97468e4e199d1d3c6bdb395cefbd228"
+    "revision": "8959338891ba2fe4dbdbd3cd0aa507c5"
   },
   {
     "url": "src/images/students.jpg",
     "revision": "81bf9519d8b1bce22026e347c10531d2"
+  },
+  {
+    "url": "src/images/icons/logo-icon-16x16.png",
+    "revision": "df4bf53a676a57443452a39a882362bd"
+  },
+  {
+    "url": "src/images/icons/logo-icon-256x256.png",
+    "revision": "8efc72f37aaf0fd61941dfd75868dc10"
   }
 ]);
 
 workbox.routing.registerRoute(/.*(?:googleapis|gstatic)\.com.*$/, 
 	workbox.strategies.staleWhileRevalidate({
-    	cacheName: 'google-fonts'
-}));
+		cacheName: 'google-fonts',
+		plugins: [
+			new workbox.expiration.Plugin({
+				maxEntries: 3,
+				maxAgeSeconds: 60 * 60 * 24 * 30
+			}),
+		]
+	}));
 
 workbox.routing.registerRoute('https://code.getmdl.io/1.3.0/material.teal-red.min.css', 
 	workbox.strategies.staleWhileRevalidate({
-    	cacheName: 'material-css'
-}));
+		cacheName: 'material-css',
+		plugins: [
+			new workbox.expiration.Plugin({
+				maxEntries: 3,
+				maxAgeSeconds: 60 * 60 * 24 * 30
+			}),
+		]
+	}));
 
 workbox.routing.registerRoute(/.*(?:firebasestorage\.googleapis)\.com.*$/, 
 	workbox.strategies.staleWhileRevalidate({
-    	cacheName: 'claim-images'
-}));
+		cacheName: 'claim-images',
+		plugins: [
+			new workbox.expiration.Plugin({
+				maxEntries: 3,
+				maxAgeSeconds: 60 * 60 * 24 * 30
+			}),
+		]
+	}));
 
+workbox.routing.registerRoute('https://pwa-life-care.firebaseio.com/claims.json', function(args) {
+	return fetch(args.event.request)
+		.then(function(res) {
+			var clonedRes = res.clone();
+			clearAllData('claims')
+				.then(function () {
+					return clonedRes.json();
+				})
+				.then(function (data) {
+					for (var key in data) {
+						writeData('claims', data[key]);
+					}
+				});
+			return res;
+		});
+});
+
+workbox.routing.registerRoute(function(routeData) {
+	return (routeData.event.request.headers.get('accept').includes('text/html'));
+}, function(args) {
+	return caches.match(args.event.request)
+		.then(function(response) {
+			if (response) {
+				return response;
+			} else {
+				return fetch(args.event.request).then(function(res) {
+					return caches.open('dynamic').then(function(cache) {
+						cache.put(args.event.request.url, res.clone());
+						return res;
+					})
+				})
+				.catch(function(err) {
+					return caches.match('/404.html').then(function(res) {
+						return res;
+					});
+				});
+			}
+	})
+});
+
+self.addEventListener('sync', function(event) {
+	if (event.tag === 'sync-new-claim') {
+		event.waitUntil(
+			readAllData('sync-claims').then(function(data) {
+				for (var dt of data) {
+					fetch('https://us-central1-pwa-life-care.cloudfunctions.net/addClaim', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'Accept': 'application/json',
+						},
+						body: JSON.stringify({
+							id: dt.id,
+							name: dt.name,
+							address: dt.address,
+							details_loss: dt.details_loss,
+							raw_location: dt.raw_location,
+							date: dt.date
+						})
+					})
+					.then(function(res) {
+						if (res.ok) {
+							res.json().then(function(resData) {
+								deleteItemFromData('sync-claims', resData.id);
+								console.log(resData);
+							});
+						}
+					})
+					.catch(function(err) {
+						console.log('Error while sending data', err);
+					});
+				}
+			})
+		);
+	}
+});

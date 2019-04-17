@@ -1,0 +1,21 @@
+.claim-card {
+	margin: 0 auto;
+	margin-top: 10px;
+	max-height: 250px;
+	margin-top: 20px;
+}
+.mdl-card__title {
+	padding-top: 0;
+    padding-bottom: 0;	
+}
+.mdl-card__title-text {
+	font-size: 20px;
+}
+.mdl-card__supporting-text {
+	padding-top: 8px;
+    padding-bottom: 8px;
+}
+.mdl-card__actions {
+	padding-left: 16px;
+    padding-right: 16px;
+}

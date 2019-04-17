@@ -12,8 +12,7 @@
 	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-red.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 	<link rel="stylesheet" href="/src/css/app.css">
-	<link rel="stylesheet" href="/src/css/claim-history.css">
-	
+
 	<link rel="manifest" href="/manifest.json">
 	<meta name="theme-color" content="#009688">
 
@@ -26,6 +25,7 @@
 	<link rel="apple-touch-icon" href="/src/images/icons/logo-icon-256x256.png" sizes="256x256">
 	<meta name="msapplication-TileImage" content="/src/images/icons/app-icon-144x144.png">
 	<meta name="msapplication-TileColor" content="#fff">
+
 </head>
 <body>
 	<div id="container">
@@ -36,8 +36,8 @@
 					
 					<div class="mdl-layout-spacer"></div>
 					<nav class="mdl-navigation mdl-layout--large-screen-only">
-						<a class="mdl-navigation__link" href="/">Home</a>
-						<a class="mdl-navigation__link is-active" href="/claim-history">Claim History</a>
+						<a class="mdl-navigation__link is-active" href="/">Home</a>
+						<a class="mdl-navigation__link" href="/claim-history/">Claim History</a>
 						<div class="drawer-option">
 							<button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
 								Turn on Notification
@@ -49,8 +49,8 @@
 			<div class="mdl-layout__drawer">
 				<span class="mdl-layout-title">Life Care</span>
 				<nav class="mdl-navigation">
-					<a class="mdl-navigation__link" href="/">Home</a>
-					<a class="mdl-navigation__link is-active" href="/claim-history">Claim History</a>
+					<a class="mdl-navigation__link is-active" href="/">Home</a>
+					<a class="mdl-navigation__link" href="/claim-history">Claim History</a>
 					<div class="drawer-option">
 						<button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
 							Turn on Notification
@@ -58,59 +58,17 @@
 					</div>
 				</nav>
 			</div>
-			<main class="mdl-layout__content">
-				<div id="claim-history">
-					<div class="claim-card mdl-card mdl-shadow--2dp">
-						<div class="mdl-card__supporting-text">
-							<span>13.04.2019</span>
-						</div>
-						<div class="mdl-card__title">
-							<p class="mdl-card__title-text">VAMK</p>
-						</div>
-						<div class="mdl-card__supporting-text">
-							<span>Phuong Nguyen</span>
-						</div>
-						<div class="mdl-card__actions mdl-card--border">
-							<p>This is a default card. You see it because I have not cached dynamic data.</p>		
-						</div>
-						<div class="mdl-card__menu">
-							<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--colored">
-								<i class="material-icons">delete_forever</i>
-							</button>
-						</div>
-					</div>
-				</div>    
-				<!-- <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-					<div class="mdl-tabs__tab-bar">
-						<a href="#home-panel" class="mdl-tabs__tab is-active">
-							<div>HOME</div>
-						</a>
-						<a href="#sell-panel" class="mdl-tabs__tab">SELL</a>
-						<a href="#history-panel" class="mdl-tabs__tab">ClAIM HISTORY</a>
-					</div>
-
-					<div class="mdl-tabs__panel is-active" id="home-panel">
-						<p>Tab 1 Content</p>
-					</div>
-
-					<div class="mdl-tabs__panel" id="sell-panel">
-						<p>Tab 2 Content</p>
-					</div>
-
-					<div class="mdl-tabs__panel" id="history-panel">
-						<p>Tab 3 Content</p>
-					</div>
-				</div> -->
-			</div>
-		</main>
+			<main class="mdl-layout__content">  
+				<div class="page-content text-center">
+					<h1 class="mdl-color-text--primary">404</h1>
+					<h4>PAGE NOT FOUND</h4>
+					<p>Or have not cached yet?</p>
+					<a href="/">Go to Home</a>
+				</div>
+			</main>
+		</div>
 	</div>
-</div>
-<script defer src="/src/js/material.js"></script>
-<script src="/src/js/idb.js"></script>
-<script src="/src/js/promise.js"></script>
-<script src="/src/js/fetch.js"></script>
-<script src="/src/js/utility.js"></script>
-<script src="/src/js/app.js"></script>
-<script src="/src/js/claim-history.js"></script>
+	<script src="/src/js/material.js"></script>
+	<script src="/src/js/app.js"></script>
 </body>
 </html>

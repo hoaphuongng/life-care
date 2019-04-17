@@ -24,6 +24,9 @@ header {
 	padding: 15px;
 }
 
+.mdl-list__item-primary-content {
+	padding-left: 15px;
+}
 
 .floating-button {
 	z-index: 1000;
