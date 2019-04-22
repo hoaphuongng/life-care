@@ -66,6 +66,7 @@ function updateUI(data, key) {
 		showClaimHistory(data[i], key[i]);
 	}
 }
+var networkReceived = false;
 
 function fetchClaim() {
 	fetch('https://pwa-life-care.firebaseio.com/claims.json')
@@ -73,6 +74,7 @@ function fetchClaim() {
 		return res.json();
 	})
 	.then(function(data) {
+		networkReceived = true;
 		var dataArray = [];
 		var keyArray = [];
 		for (var key in data) {
@@ -83,6 +85,17 @@ function fetchClaim() {
 	});
 }
 
+if ('indexedDB' in window) {
+	readAllData('claims').then(function (data) {
+		var keyArray = [];
+		if (!networkReceived) {
+			for (var key in data) {
+				keyArray.push(data.id);
+			}
+			updateUI(data, keyArray);
+		}
+	});
+}
 
 function deleteClaim(claim) {
 	fetch('https://us-central1-pwa-life-care.cloudfunctions.net/deleteClaim', {
@@ -101,12 +114,6 @@ function deleteClaim(claim) {
 }
 
 function openDeleteDialog(claimKey) {
-	// if (! dialog.showModal) {
-	// 	dialogPolyfill.registerDialog(dialog);
-	// }
-	// showDialogButton.addEventListener('click', function() {
-	// 	dialog.showModal();
-	// });
 	dialog.showModal();
 	dialog.querySelector('.delete').addEventListener('click', function() {
 		deleteClaim(claimKey);
