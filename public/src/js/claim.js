@@ -129,7 +129,6 @@ claimForm.addEventListener('submit', function() {
 
 	if ('serviceWorker' in navigator && 'SyncManager' in window) {
 		navigator.serviceWorker.ready.then(function(sw) {
-			console.log(sw);
 			var date = new Date();
 			var claim = {
 				id: date.toISOString(),

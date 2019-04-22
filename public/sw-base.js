@@ -114,3 +114,47 @@ self.addEventListener('sync', function(event) {
 		);
 	}
 });
+
+self.addEventListener('push', function(event) {
+	var notificationData = { title: 'New!', content: 'Something', openUrl: '/'};
+
+	if (event.data) {
+		notificationData = JSON.parse(event.data.text());
+	}
+
+	var options = {
+		body: notificationData.content,
+		icon: '/src/images/icons/logo-icon-64x64.png',
+		badge: '/src/images/icons/logo-icon-32x32.png',
+		tag: 'new-claim-push-notification',
+		renotify: true,
+		data: {
+			url: notificationData.openUrl
+		}
+	};
+	event.waitUntil(
+		self.registration.showNotification(notificationData.title, options)
+	);
+});
+
+self.addEventListener('notificationclick', function(event) {
+	var notification = event.notification;
+	if (notification.tag === 'new-claim-push-notification') {
+		event.waitUntil(
+			clients.matchAll().then(function(clis) {
+				var client = clis.find(function(c) {
+					return c.visibilityState === 'visible';
+				});
+
+				if (client !== undefined) {
+					client.navigate(notification.data.url);
+					client.focus();
+				} else {
+					clients.openWindow(notification.data.url);
+				}
+				notification.close();
+			})
+		);
+	} 
+	// else if (notification.tag === 'confirm-turn-on-notification') {}
+});

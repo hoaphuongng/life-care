@@ -10,7 +10,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "index.html",
-    "revision": "4ee715da5aa76fe594c62146d66226b8"
+    "revision": "aed044bcbe104bcb63fac13604fcd56a"
   },
   {
     "url": "manifest.json",
@@ -18,7 +18,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "src/css/app.css",
-    "revision": "1b4b890fa0faafe0184d7dd03f7faaca"
+    "revision": "930464e539e14a3aeb5e2dd3df59547c"
   },
   {
     "url": "src/css/claim-history.css",
@@ -30,15 +30,15 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "src/js/app.js",
-    "revision": "036ca899f18570a0ca5947e131578bac"
+    "revision": "ea372e51fa40765d01a9366920e5a53d"
   },
   {
     "url": "src/js/claim-history.js",
-    "revision": "cae3c518c3781a8139c1ca805181c89a"
+    "revision": "6a8321b00d3bb5b20786b8af73cfc32c"
   },
   {
     "url": "src/js/claim.js",
-    "revision": "f872c039c5fa5f3409970f77ba6b8ccb"
+    "revision": "7c6b27355409bc2353c7217c186c229f"
   },
   {
     "url": "src/js/fetch.js",
@@ -58,11 +58,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "src/js/utility.js",
-    "revision": "8f7180606c60833f2c9e18955e4ea71a"
+    "revision": "c6230eb690ec3c43a88999488c8400f5"
   },
   {
     "url": "sw-base.js",
-    "revision": "d3d73c3bdb0b5f8ff9576b096e293b0d"
+    "revision": "77f891d1690284181d7efc67eee2e59b"
   },
   {
     "url": "sw.js",
@@ -190,4 +190,48 @@ self.addEventListener('sync', function(event) {
 			})
 		);
 	}
+});
+
+self.addEventListener('push', function(event) {
+	var notificationData = { title: 'New!', content: 'Something', openUrl: '/'};
+
+	if (event.data) {
+		notificationData = JSON.parse(event.data.text());
+	}
+
+	var options = {
+		body: notificationData.content,
+		icon: '/src/images/icons/logo-icon-64x64.png',
+		badge: '/src/images/icons/logo-icon-32x32.png',
+		tag: 'new-claim-push-notification',
+		renotify: true,
+		data: {
+			url: notificationData.openUrl
+		}
+	};
+	event.waitUntil(
+		self.registration.showNotification(notificationData.title, options)
+	);
+});
+
+self.addEventListener('notificationclick', function(event) {
+	var notification = event.notification;
+	if (notification.tag === 'new-claim-push-notification') {
+		event.waitUntil(
+			clients.matchAll().then(function(clis) {
+				var client = clis.find(function(c) {
+					return c.visibilityState === 'visible';
+				});
+
+				if (client !== undefined) {
+					client.navigate(notification.data.url);
+					client.focus();
+				} else {
+					clients.openWindow(notification.data.url);
+				}
+				notification.close();
+			})
+		);
+	} 
+	// else if (notification.tag === 'confirm-turn-on-notification') {}
 });

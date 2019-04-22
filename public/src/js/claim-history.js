@@ -1,8 +1,9 @@
 var claimHistory = document.querySelector('#claim-history');
+var dialog = document.querySelector('dialog');
 
 fetchClaim();
 
-function showClaimHistory(claim, claimKey) {
+function showClaimHistory(claim, key) {
 	var claimCard = document.createElement('div');
 	claimCard.className = 'claim-card mdl-card mdl-shadow--2dp';
 
@@ -46,7 +47,7 @@ function showClaimHistory(claim, claimKey) {
 	deleteBtnContainer.appendChild(deleteBtn);
 	deleteBtn.appendChild(deleteIcon);
 	deleteBtn.addEventListener('click', function() {
-		deleteClaim(claimKey);
+		openDeleteDialog(key);
 	});
 
 	componentHandler.upgradeElement(claimCard);
@@ -97,4 +98,22 @@ function deleteClaim(claim) {
 	.then(function(res) {
 		fetchClaim();
 	});
+}
+
+function openDeleteDialog(claimKey) {
+	// if (! dialog.showModal) {
+	// 	dialogPolyfill.registerDialog(dialog);
+	// }
+	// showDialogButton.addEventListener('click', function() {
+	// 	dialog.showModal();
+	// });
+	dialog.showModal();
+	dialog.querySelector('.delete').addEventListener('click', function() {
+		deleteClaim(claimKey);
+		dialog.close();
+	});
+	dialog.querySelector('.close').addEventListener('click', function() {
+		dialog.close();
+	});
+	
 }
