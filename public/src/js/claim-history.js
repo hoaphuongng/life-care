@@ -39,7 +39,7 @@ function showClaimHistory(claim, key) {
 	var deleteBtnContainer = document.createElement('div');
 	deleteBtnContainer.className = 'mdl-card__menu';
 	var deleteBtn = document.createElement('button');
-	deleteBtn.className = 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--colored';
+	deleteBtn.className = 'mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-button--colored';
 	var deleteIcon = document.createElement('i');
 	deleteIcon.className = 'material-icons';
 	deleteIcon.textContent = 'delete_forever';
