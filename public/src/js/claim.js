@@ -96,7 +96,7 @@ function reverseLocation(lat, long) {
 
 function sendClaim() {
 	var date = new Date();
-
+	var month = date.getMonth() + 1;
 	fetch('https://us-central1-pwa-life-care.cloudfunctions.net/addClaim', {
 		method: 'POST',
 		headers: {
@@ -109,7 +109,7 @@ function sendClaim() {
 			address: addressInput.value,
 			details_loss: detailsLossInput.value,
 			raw_location: fetchedLocation,
-			date: date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear()
+			date: date.getDate() + '.' + month + '.' + date.getFullYear()
 		})
 	})
 	.then(function(res) {

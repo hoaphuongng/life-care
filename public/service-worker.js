@@ -14,7 +14,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "manifest.json",
-    "revision": "a4e6989f1461b8f604cfccbe60ae69f4"
+    "revision": "092615f4ddf0e2c7d742a450753de882"
   },
   {
     "url": "src/css/app.css",
@@ -34,11 +34,11 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "src/js/claim-history.js",
-    "revision": "6a8321b00d3bb5b20786b8af73cfc32c"
+    "revision": "e83cf2a0d9799dfcbea296cd6484a87c"
   },
   {
     "url": "src/js/claim.js",
-    "revision": "7c6b27355409bc2353c7217c186c229f"
+    "revision": "5897839c474fb940fe5743d9fe15c8b6"
   },
   {
     "url": "src/js/fetch.js",
@@ -62,7 +62,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "sw-base.js",
-    "revision": "77f891d1690284181d7efc67eee2e59b"
+    "revision": "cad644375f098c15cbf2bf66e3ffd0d2"
   },
   {
     "url": "sw.js",
@@ -96,17 +96,6 @@ workbox.routing.registerRoute(/.*(?:googleapis|gstatic)\.com.*$/,
 workbox.routing.registerRoute('https://code.getmdl.io/1.3.0/material.teal-red.min.css', 
 	workbox.strategies.staleWhileRevalidate({
 		cacheName: 'material-css',
-		plugins: [
-			new workbox.expiration.Plugin({
-				maxEntries: 3,
-				maxAgeSeconds: 60 * 60 * 24 * 30
-			}),
-		]
-	}));
-
-workbox.routing.registerRoute(/.*(?:firebasestorage\.googleapis)\.com.*$/, 
-	workbox.strategies.staleWhileRevalidate({
-		cacheName: 'claim-images',
 		plugins: [
 			new workbox.expiration.Plugin({
 				maxEntries: 3,

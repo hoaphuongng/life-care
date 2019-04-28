@@ -27,17 +27,6 @@ workbox.routing.registerRoute('https://code.getmdl.io/1.3.0/material.teal-red.mi
 		]
 	}));
 
-workbox.routing.registerRoute(/.*(?:firebasestorage\.googleapis)\.com.*$/, 
-	workbox.strategies.staleWhileRevalidate({
-		cacheName: 'claim-images',
-		plugins: [
-			new workbox.expiration.Plugin({
-				maxEntries: 3,
-				maxAgeSeconds: 60 * 60 * 24 * 30
-			}),
-		]
-	}));
-
 workbox.routing.registerRoute('https://pwa-life-care.firebaseio.com/claims.json', function(args) {
 	return fetch(args.event.request)
 		.then(function(res) {
