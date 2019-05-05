@@ -106,3 +106,19 @@ exports.addSubscription = functions.https.onRequest((request, response) => {
 		});
 	});
 });
+
+exports.signUp = functions.https.onRequest((request, response) => {
+	cors(request, response, () => {
+		firebase.auth.createUserWithEmailAndPassword(request.body.email, request.body.password)
+		.then(() => {
+			return response.status(201).json({
+				signUp: true
+			});
+		})
+		.catch((err) => {
+			return response.status.status(500).json({
+				error: err
+			})
+		});
+	});
+});

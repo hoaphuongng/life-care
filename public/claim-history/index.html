@@ -56,29 +56,36 @@
 							Turn on Notification
 						</button>
 					</div>
+					<div class="drawer-option logout-container hide">
+					</div>
 				</nav>
 			</div>
 			<main class="mdl-layout__content">
-				<div id="claim-history">
-					<div class="claim-card mdl-card mdl-shadow--2dp">
-						<div class="mdl-card__supporting-text">
-							<span>13.04.2019</span>
-						</div>
-						<div class="mdl-card__title">
-							<p class="mdl-card__title-text">VAMK</p>
-						</div>
-						<div class="mdl-card__supporting-text">
-							<span>Phuong Nguyen</span>
-						</div>
-						<div class="mdl-card__actions mdl-card--border">
-							<p>This is a default card. You see it because I have not cached dynamic data.</p>		
-						</div>
-						<div class="mdl-card__menu">
-							<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--fab">
-								<i class="material-icons">delete_forever</i>
-							</button>
-						</div>
+				<form class="login-form hide">
+					<h5>LOG IN</h5>
+					<p>Please log in to view claim records.</p>
+					<div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+						<input class="mdl-textfield__input" type="email" 
+						placeholder="e.g. john@doe.com" id="email">
+						<label class="mdl-textfield__label" for="email" 
+						name="email">Email</label>
+						<span class = "mdl-textfield__error">Email required!</span>
 					</div>
+					<div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+						<input class="mdl-textfield__input" type="password" 
+						placeholder="e.g. *******" id="password">
+						<label class="mdl-textfield__label" for="password" 
+						name="password">Password</label>
+					</div>
+					<div>
+						<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent mdl-js-ripple-effect"
+						type="button" id="login-btn">Login</button>
+						<button class="mdl-button mdl-js-button mdl-js-ripple-effect"
+						type="button" id="register-btn">Register</button>
+					</div>
+				</form>
+				<div id="claim-history">
+					<!-- Show claim cards here -->
 				</div>    
 				<dialog class="mdl-dialog">
 					<h4 class="mdl-dialog__title">Delete Claim ?</h4>
@@ -90,8 +97,12 @@
 						<button type="button" class="mdl-button close">Cancel</button>
 					</div>
 				</dialog>
-			</div>
-		</main>
+				<div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+					<div class="mdl-snackbar__text"></div>
+					<button type="button" class="mdl-snackbar__action"></button>
+				</div>
+			</main>
+		</div>
 	</div>
 </div>
 <script defer src="/src/js/material.js"></script>
@@ -99,6 +110,8 @@
 <script src="/src/js/promise.js"></script>
 <script src="/src/js/fetch.js"></script>
 <script src="/src/js/utility.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
 <script src="/src/js/app.js"></script>
 <script src="/src/js/claim-history.js"></script>
 </body>

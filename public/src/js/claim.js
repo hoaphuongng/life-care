@@ -120,7 +120,13 @@ function sendClaim() {
 claimForm.addEventListener('submit', function() {
 	event.preventDefault();
 
-	if (nameInput.value.trim() === '' || addressInput.value.trim() === '') {
+	if (nameInput.value.trim() === '') {
+		alert('Please enter your name!');
+		return;
+	} else if (addressInput.value.trim() === '') {
+		alert('Please enter your address!');
+		return;
+	} else {
 		alert('Please enter valid data!');
 		return;
 	}

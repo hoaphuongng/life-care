@@ -6,6 +6,10 @@ header {
 	background-color: #009688 !important;
 }
 
+p {
+    word-break: break-word;
+}
+
 .is-active {
 	font-weight: bold;
 	opacity: 1;
@@ -24,6 +28,17 @@ header {
 	padding: 15px;
 }
 
+.drawer-option.logout-container{
+	position: absolute;
+    bottom: 0;
+    width: 205px;
+    text-align: center;
+}
+
+.drawer-option button {
+	width: 100%;
+}
+
 .mdl-list__item-primary-content {
 	padding-left: 15px;
 }
@@ -38,6 +53,10 @@ header {
 
 img {
 	width: 100%;
+}
+
+.hide {
+	display: none;
 }
 
 @media(min-width: 1000px) {

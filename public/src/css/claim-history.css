@@ -1,3 +1,11 @@
+.login-form {
+	width: 100%;
+	text-align: center;
+}
+.input-section {
+	display: block;
+	margin: 0px auto;
+}
 .claim-card {
 	margin: 0 auto;
 	margin-top: 10px;

@@ -1,7 +1,11 @@
 var claimHistory = document.querySelector('#claim-history');
 var dialog = document.querySelector('dialog');
 
-fetchClaim();
+var loginForm = document.querySelector('.login-form');
+var emailInput = document.querySelector('#email');
+var passwordInput = document.querySelector('#password');
+var loginBtn = document.querySelector('#login-btn');
+var registerBtn = document.querySelector('#register-btn');
 
 function showClaimHistory(claim, key) {
 	var claimCard = document.createElement('div');
@@ -85,16 +89,18 @@ function fetchClaim() {
 	});
 }
 
-if ('indexedDB' in window) {
-	readAllData('claims').then(function (data) {
-		var keyArray = [];
-		if (!networkReceived) {
-			for (var key in data) {
-				keyArray.push(data.id);
+function fetchClaimFromIndexedDB() {
+	if ('indexedDB' in window) {
+		readAllData('claims').then(function (data) {
+			var keyArray = [];
+			if (!networkReceived) {
+				for (var key in data) {
+					keyArray.push(data.id);
+				}
+				updateUI(data, keyArray);
 			}
-			updateUI(data, keyArray);
-		}
-	});
+		});
+	}
 }
 
 function deleteClaim(claim) {
@@ -122,5 +128,45 @@ function openDeleteDialog(claimKey) {
 	dialog.querySelector('.close').addEventListener('click', function() {
 		dialog.close();
 	});
-	
 }
+
+function displayToast(error) {
+	var notification = document.querySelector('.mdl-js-snackbar');
+	var data = {
+	 	message: error,
+		timeout: 5000
+	};
+	notification.MaterialSnackbar.showSnackbar(data);
+}
+
+loginBtn.addEventListener('click', function() {
+	firebase.auth().signInWithEmailAndPassword(emailInput.value, passwordInput.value)
+		.then(function(res){
+			console.log(res);
+		})
+		.catch(function(error) {
+			displayToast(error.message);
+		});
+});
+
+registerBtn.addEventListener('click', function() {
+	firebase.auth().createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
+		.then(function(res){
+			console.log(res);
+		})
+		.catch(function(error) {
+			displayToast(error.message);
+		});
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		// User logged in
+		loginForm.classList.add('hide');
+		fetchClaim();
+		fetchClaimFromIndexedDB();
+	} else {
+		// User logged out
+		loginForm.classList.remove('hide');
+	}
+});

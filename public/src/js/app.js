@@ -1,5 +1,18 @@
 var deferredPrompt;
 var notificationBtns = document.querySelectorAll('.turn-on-notifications');
+var logoutContainer = document.querySelector('.logout-container');
+
+var firebaseConfig = {
+	apiKey: "AIzaSyB9sK45SEchVGRSGi9qGVB0651VDNh7Gdg",
+	authDomain: "pwa-life-care.firebaseapp.com",
+	databaseURL: "https://pwa-life-care.firebaseio.com",
+	projectId: "pwa-life-care",
+	storageBucket: "pwa-life-care.appspot.com",
+	messagingSenderId: "643856345237",
+	appId: "1:643856345237:web:31280a48ac028c9d"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 if (!window.Promise) {
 	window.Promise = Promise;
@@ -106,3 +119,30 @@ function configureSubscription() {
 		console.log(err);
 	});
 }
+
+function displayLogout(email) {
+	var loggedInText = document.createElement('p');
+	loggedInText.textContent = 'Logged in as ' + email;
+	logoutContainer.appendChild(loggedInText);
+
+	var logOutBtn = document.createElement('button');
+	logOutBtn.className = 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored';
+	logOutBtn.textContent = 'Log out';
+
+	logoutContainer.appendChild(logOutBtn);
+
+	logOutBtn.addEventListener('click', function() {
+		firebase.auth().signOut().then(function() {
+			logoutContainer.classList.add('hide');
+		});
+	});
+}
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+	if (user) {
+		displayLogout(user.email);
+		logoutContainer.classList.remove('hide');
+		console.log('logged in');
+	} 
+});
